@@ -2,14 +2,29 @@
 let TIME_LIMIT = 60;
 
 // define quotes to be used
+// let quotes_array = [
+//   "Push yourself, because no one else is going to do it for you.",
+//   "Failure is the condiment that gives success its flavor.",
+//   "Wake up with determination. Go to bed with satisfaction.",
+//   "It's going to be hard, but hard does not mean impossible.",
+//   "Learning never exhausts the mind.",
+//   "The only way to do great work is to love what you do."
+// ];
+
 let quotes_array = [
-  "Push yourself, because no one else is going to do it for you.",
-  "Failure is the condiment that gives success its flavor.",
-  "Wake up with determination. Go to bed with satisfaction.",
-  "It's going to be hard, but hard does not mean impossible.",
-  "Learning never exhausts the mind.",
-  "The only way to do great work is to love what you do."
-];
+  "Aesop, according to legend, was born either in Sardis, on the Greek island of Samos,\
+  or in Cotiaeum, the chief city in a province of Phrygia, and lived from about 620 to 560 B.C.\
+  Little is known about his life, but Aristotle mentioned his acting as a public defender, and\
+  Plutarch numbered him as one of the \"Seven Wise Men.\"; It is generally believed he was a slave,\
+  freed by his master because of his wit and wisdom. As a free man, he went to Athens, ruled at\
+  that time by the tyrant Peisistratus, an enemy of free speech.",
+  "As Aesop became famous for his\
+  fables, which used animals as a code to tell the truth about political injustice, he incurred\
+  the wrath of Peisistratus. Eventually, Aesop was condemned to death for sacrilege and thrown\
+  over a cliff. Later, the Athenians erected a statue in his honor. In about 300 B.C., Demetrius\
+  Phalereus of Athens made the first known collection of Aesop's fables, which then spread far\
+  beyond the Greek world."
+]
 
 // selecting required elements
 let timer_text = document.querySelector(".curr_time");
