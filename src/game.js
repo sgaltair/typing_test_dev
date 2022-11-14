@@ -12,18 +12,7 @@ let TIME_LIMIT = 60;
 // ];
 
 let quotes_array = [
-  "Aesop, according to legend, was born either in Sardis, on the Greek island of Samos,\
-  or in Cotiaeum, the chief city in a province of Phrygia, and lived from about 620 to 560 B.C.\
-  Little is known about his life, but Aristotle mentioned his acting as a public defender, and\
-  Plutarch numbered him as one of the \"Seven Wise Men.\"; It is generally believed he was a slave,\
-  freed by his master because of his wit and wisdom. As a free man, he went to Athens, ruled at\
-  that time by the tyrant Peisistratus, an enemy of free speech.",
-  "As Aesop became famous for his\
-  fables, which used animals as a code to tell the truth about political injustice, he incurred\
-  the wrath of Peisistratus. Eventually, Aesop was condemned to death for sacrilege and thrown\
-  over a cliff. Later, the Athenians erected a statue in his honor. In about 300 B.C., Demetrius\
-  Phalereus of Athens made the first known collection of Aesop's fables, which then spread far\
-  beyond the Greek world."
+  "Aesop, according to legend, was born either in Sardis, on the Greek island of Samos, or in Cotiaeum, the chief city in a province of Phrygia, and lived from about 620 to 560 B.C. Little is known about his life, but Aristotle mentioned his acting as a public defender, and Plutarch numbered him as one of the “Seven Wise Men.” It is generally believed he was a slave, freed by his master because of his wit and wisdom. As a free man, he went to Athens, ruled at that time by the tyrant Peisistratus, an enemy of free speech. As Aesop became famous for his fables, which used animals as a code to tell the truth about political injustice, he incurred the wrath of Peisistratus. Eventually, Aesop was condemned to death for sacrilege and thrown over a cliff. Later, the Athenians erected a statue in his honor. In about 300 B.C., Demetrius Phalereus of Athens made the first known collection of Aesop's fables, which then spread far beyond the Greek world."
 ]
 
 // selecting required elements
