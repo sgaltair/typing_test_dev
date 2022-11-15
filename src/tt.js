@@ -1,19 +1,9 @@
+let USER = "test user"
+let delim = "***"
+
 // define the time limit
-let TIME_LIMIT = 60;
-
-// define quotes to be used
-// let quotes_array = [
-//   "Push yourself, because no one else is going to do it for you.",
-//   "Failure is the condiment that gives success its flavor.",
-//   "Wake up with determination. Go to bed with satisfaction.",
-//   "It's going to be hard, but hard does not mean impossible.",
-//   "Learning never exhausts the mind.",
-//   "The only way to do great work is to love what you do."
-// ];
-
-let quotes_array = [
-  "Aesop, according to legend, was born either in Sardis, on the Greek island of Samos, or in Cotiaeum, the chief city in a province of Phrygia, and lived from about 620 to 560 B.C. Little is known about his life, but Aristotle mentioned his acting as a public defender, and Plutarch numbered him as one of the “Seven Wise Men.” It is generally believed he was a slave, freed by his master because of his wit and wisdom. As a free man, he went to Athens, ruled at that time by the tyrant Peisistratus, an enemy of free speech. As Aesop became famous for his fables, which used animals as a code to tell the truth about political injustice, he incurred the wrath of Peisistratus. Eventually, Aesop was condemned to death for sacrilege and thrown over a cliff. Later, the Athenians erected a statue in his honor. In about 300 B.C., Demetrius Phalereus of Athens made the first known collection of Aesop's fables, which then spread far beyond the Greek world."
-]
+// let TIME_LIMIT = 60;
+let TIME_LIMIT = 10;
 
 // selecting required elements
 let timer_text = document.querySelector(".curr_time");
@@ -21,11 +11,13 @@ let accuracy_text = document.querySelector(".curr_accuracy");
 let error_text = document.querySelector(".curr_errors");
 let cpm_text = document.querySelector(".curr_cpm");
 let wpm_text = document.querySelector(".curr_wpm");
+let awpm_text = document.querySelector(".curr_awpm")
 let quote_text = document.querySelector(".quote");
 let input_area = document.querySelector(".input_area");
 let restart_btn = document.querySelector(".restart_btn");
 let cpm_group = document.querySelector(".cpm");
 let wpm_group = document.querySelector(".wpm");
+let awpm_group = document.querySelector(".awpm");
 let error_group = document.querySelector(".errors");
 let accuracy_group = document.querySelector(".accuracy");
 
@@ -98,7 +90,7 @@ function processCurrentText() {
 
   // update accuracy text
   let correctCharacters = (characterTyped - (total_errors + errors));
-  let accuracyVal = ((correctCharacters / characterTyped) * 100);
+  accuracyVal = ((correctCharacters / characterTyped) * 100);
   accuracy_text.textContent = Math.round(accuracyVal);
 
   // if current text is completely typed
@@ -144,17 +136,52 @@ function finishGame() {
   // display restart button
   restart_btn.style.display = "block";
 
-  // calculate cpm and wpm
+  // calculate cpm and wpm and awpm
   cpm = Math.round(((characterTyped / timeElapsed) * 60));
   wpm = Math.round((((characterTyped / 5) / timeElapsed) * 60));
+  awpm = Math.round(wpm * (accuracyVal / 100))
 
-  // update cpm and wpm text
+  // update cpm and wpm and awpm text
   cpm_text.textContent = cpm;
   wpm_text.textContent = wpm;
+  awpm_text.textContent = awpm;
 
-  // display the cpm and wpm
+  // display the cpm and wpm and awpm
   cpm_group.style.display = "block";
   wpm_group.style.display = "block";
+  awpm_group.style.display = "block";
+
+  // const body = [
+  //   delim,
+  //   USER,
+  //   wpm,
+  //   awpm,
+  //   accuracyVal,
+  //   delim
+  // ];
+  let timestamp = new Date()
+  const body = `  Timestamp: ${timestamp}
+  User: ${USER}
+  WPM: ${wpm}
+  AWPM: ${awpm}
+  Accuracy Percent: ${accuracyVal}
+  `
+    
+    const init = {
+      method: 'POST',
+      body
+    };
+    
+    fetch('http://isame-lab.com:8075', init)
+    .then((response) => {
+      return response.json(); // or .text() or .blob() ...
+    })
+    .then((text) => {
+      // text is the response body
+    })
+    .catch((e) => {
+      // error in e.message
+    });
 }
 
 
@@ -186,4 +213,16 @@ function resetValues() {
   restart_btn.style.display = "none";
   cpm_group.style.display = "none";
   wpm_group.style.display = "none";
+  awpm_group.style.display = "none";
 }
+
+// const sendData = () => {
+// 	const xhr = new XMLHttpRequest();
+//   // 'Access-Control-Allow-Origin: *'
+// 	xhr.open('POST', 'http://isame-lab.com:8075')
+//   xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+//   xhr.setRequestHeader('Referer','http://isame-lab.com:8069/')
+// 	xhr.send();
+// };
+// let info = ["wpm: 50"]
+// sendData(info)

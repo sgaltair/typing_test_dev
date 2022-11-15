@@ -1,5 +1,5 @@
 body {
-  background-color: #6f01fe;
+  background-color: #212024;
   color: black;
   text-align: center;
 }
@@ -22,7 +22,7 @@ body {
 }
 
 .timer, .errors,
-.accuracy, .cpm, .wpm {
+.accuracy, .cpm, .wpm, .awpm {
   background-color: #ccda46;
   height: 60px;
   width: 70px;
@@ -32,7 +32,7 @@ body {
   box-shadow: black 5px 8px 5px;
 }
 
-.cpm, .wpm  {
+.cpm, .wpm, .awpm  {
   display: none;
 }
 
@@ -44,7 +44,7 @@ body {
 
 .curr_time, .curr_errors,
 .curr_accuracy, .curr_cpm,
-.curr_wpm {
+.curr_wpm, .curr_awpm {
   font-size: 2.75rem;
 }
 
