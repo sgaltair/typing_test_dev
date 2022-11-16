@@ -1,6 +1,6 @@
 // define the time limit
-let TIME_LIMIT = 60;
-// let TIME_LIMIT = 1;
+// let TIME_LIMIT = 60;
+let TIME_LIMIT = 1;
 
 // selecting required elements
 let timer_text = document.querySelector(".curr_time");
@@ -163,7 +163,7 @@ function finishGame() {
     "WPM": ${wpm},
     "AWPM": ${awpm},
     "AccuracyPercent": ${accuracyVal}
-},`
+  },`
   
   const init = {
     method: 'POST',

@@ -1,14 +1,9 @@
-  "13":{
-    "Timestamp": "Tue Nov 15 2022 19:39:12 GMT-0500 (Eastern Standard Time)",
+{
+
+  "33":{
+    "Timestamp": "Tue Nov 15 2022 20:28:21 GMT-0500 (Eastern Standard Time)",
     "IP": "68.101.67.213",
-    "WPM": 114,
-    "AWPM": 114,
-    "AccuracyPercent": 99.82517482517483
-},
-  "64":{
-    "Timestamp": "Tue Nov 15 2022 19:44:15 GMT-0500 (Eastern Standard Time)",
-    "IP": "68.101.67.213",
-    "WPM": 121,
-    "AWPM": 121,
+    "WPM": 204,
+    "AWPM": 204,
     "AccuracyPercent": 100
-},
+  },
