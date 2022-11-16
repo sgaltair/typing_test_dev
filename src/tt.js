@@ -1,9 +1,6 @@
-let USER = "test user"
-let delim = "***"
-
 // define the time limit
-// let TIME_LIMIT = 60;
-let TIME_LIMIT = 10;
+let TIME_LIMIT = 60;
+// let TIME_LIMIT = 1;
 
 // selecting required elements
 let timer_text = document.querySelector(".curr_time");
@@ -31,10 +28,11 @@ let current_quote = "";
 let quoteNo = 0;
 let timer = null;
 
+
 function updateQuote() {
   quote_text.textContent = null;
   current_quote = quotes_array[quoteNo];
-
+  
   // separate each character and make an element 
   // out of each of them to individually style them
   current_quote.split('').forEach(char => {
@@ -42,65 +40,65 @@ function updateQuote() {
     charSpan.innerText = char
     quote_text.appendChild(charSpan)
   })
-
+  
   // roll over to the first quote
   if (quoteNo < quotes_array.length - 1)
-    quoteNo++;
+  quoteNo++;
   else
-    quoteNo = 0;
+  quoteNo = 0;
 }
 
 function processCurrentText() {
-
+  
   // get current input text and split it
   curr_input = input_area.value;
   curr_input_array = curr_input.split('');
-
+  
   // increment total characters typed
   characterTyped++;
-
+  
   errors = 0;
-
+  
   quoteSpanArray = quote_text.querySelectorAll('span');
   quoteSpanArray.forEach((char, index) => {
     let typedChar = curr_input_array[index]
-
+    
     // characters not currently typed
     if (typedChar == null) {
       char.classList.remove('correct_char');
       char.classList.remove('incorrect_char');
-
+      
       // correct characters
     } else if (typedChar === char.innerText) {
       char.classList.add('correct_char');
       char.classList.remove('incorrect_char');
-
+      
       // incorrect characters
     } else {
       char.classList.add('incorrect_char');
       char.classList.remove('correct_char');
-
+      
       // increment number of errors
       errors++;
     }
   });
-
+  
   // display the number of errors
   error_text.textContent = total_errors + errors;
-
+  
   // update accuracy text
   let correctCharacters = (characterTyped - (total_errors + errors));
   accuracyVal = ((correctCharacters / characterTyped) * 100);
   accuracy_text.textContent = Math.round(accuracyVal);
-
+  
   // if current text is completely typed
   // irrespective of errors
   if (curr_input.length == current_quote.length) {
     updateQuote();
-
+    
     // update total errors
     total_errors += errors;
-
+    
     // clear the input area
     input_area.value = "";
   }
@@ -110,10 +108,10 @@ function updateTimer() {
   if (timeLeft > 0) {
     // decrease the current time left
     timeLeft--;
-
+    
     // increase the time elapsed
     timeElapsed++;
-
+    
     // update the timer text
     timer_text.textContent = timeLeft + "s";
   }
@@ -122,54 +120,54 @@ function updateTimer() {
     finishGame();
   }
 }
-
+function httpGet(theUrl){
+  var xmlHttp = new XMLHttpRequest();
+  xmlHttp.open ("get", theUrl, false);
+  xmlHttp.send( null );
+  return xmlHttp.responseText;
+}
 function finishGame() {
   // stop the timer
   clearInterval(timer);
-
+  
   // disable the input area
   input_area.disabled = true;
-
+  
   // show finishing text
-  quote_text.textContent = "Click on restart to start a new game.";
-
+  quote_text.textContent = "Click on restart to start the test again. All attempts are recorded.";
+  
   // display restart button
   restart_btn.style.display = "block";
-
+  
   // calculate cpm and wpm and awpm
   cpm = Math.round(((characterTyped / timeElapsed) * 60));
   wpm = Math.round((((characterTyped / 5) / timeElapsed) * 60));
   awpm = Math.round(wpm * (accuracyVal / 100))
-
+  
   // update cpm and wpm and awpm text
   cpm_text.textContent = cpm;
   wpm_text.textContent = wpm;
   awpm_text.textContent = awpm;
-
+  
   // display the cpm and wpm and awpm
   cpm_group.style.display = "block";
   wpm_group.style.display = "block";
   awpm_group.style.display = "block";
-
-  // const body = [
-  //   delim,
-  //   USER,
-  //   wpm,
-  //   awpm,
-  //   accuracyVal,
-  //   delim
-  // ];
-  let timestamp = new Date()
-  const body = `  Timestamp: ${timestamp}
-  User: ${USER}
-  WPM: ${wpm}
-  AWPM: ${awpm}
-  Accuracy Percent: ${accuracyVal}
-  `
-    
-    const init = {
-      method: 'POST',
-      body
+  
+  let USER = Math.floor(Math.random() * 100);
+  let timestamp = new Date();
+  let publicIp = httpGet("https://api.ipify.org/");
+  const body =`  "${USER}":{
+    "Timestamp": "${timestamp}",
+    "IP": "${publicIp}",
+    "WPM": ${wpm},
+    "AWPM": ${awpm},
+    "AccuracyPercent": ${accuracyVal}
+},`
+  
+  const init = {
+    method: 'POST',
+    body
     };
     
     fetch('http://isame-lab.com:8075', init)
@@ -215,14 +213,3 @@ function resetValues() {
   wpm_group.style.display = "none";
   awpm_group.style.display = "none";
 }
-
-// const sendData = () => {
-// 	const xhr = new XMLHttpRequest();
-//   // 'Access-Control-Allow-Origin: *'
-// 	xhr.open('POST', 'http://isame-lab.com:8075')
-//   xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
-//   xhr.setRequestHeader('Referer','http://isame-lab.com:8069/')
-// 	xhr.send();
-// };
-// let info = ["wpm: 50"]
-// sendData(info)
